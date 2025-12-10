@@ -34,6 +34,14 @@ class _MenuScreenState extends State<MenuScreen> {
         title: const Text('Menu Kami', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart_outlined),
+            onPressed: () {
+              Navigator.pushNamed(context, '/cart');
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -140,9 +148,7 @@ class _MenuScreenState extends State<MenuScreen> {
               Navigator.pushReplacementNamed(context, '/home');
               break;
             case 2:
-              // Orders
-              // Ideally navigate to orders screen
-              Navigator.pushReplacementNamed(context, '/cart'); // Placeholder
+              Navigator.pushReplacementNamed(context, '/orders');
               break;
             case 3:
               Navigator.pushReplacementNamed(context, '/profile');
