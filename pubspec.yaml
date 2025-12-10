@@ -15,6 +15,7 @@ dependencies:
   path: ^1.8.0
   google_fonts: ^6.1.0
   intl: ^0.18.0
+  shared_preferences: ^2.2.0
   sqflite_common_ffi: ^2.2.5 # Useful for testing if environment supported, or just good practice
 
 dev_dependencies:

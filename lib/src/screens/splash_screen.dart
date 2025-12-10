@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
 import '../widgets/wcdonalds_logo.dart';
 import '../utils/theme.dart';
+import '../providers/auth_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,9 +37,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward();
 
-    // Navigation timer
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/welcome');
+    // Navigation timer & Auto Login Check
+    Timer(const Duration(seconds: 3), () async {
+      final auth = Provider.of<AuthProvider>(context, listen: false);
+      final isLoggedIn = await auth.tryAutoLogin();
+
+      if (mounted) {
+        if (isLoggedIn) {
+          Navigator.pushReplacementNamed(context, '/home');
+        } else {
+          Navigator.pushReplacementNamed(context, '/welcome');
+        }
+      }
     });
   }
 

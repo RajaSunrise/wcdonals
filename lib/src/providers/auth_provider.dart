@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_model.dart';
 import '../services/database_helper.dart';
 
@@ -10,12 +11,32 @@ class AuthProvider with ChangeNotifier {
   bool get isLoading => _isLoading;
   bool get isLoggedIn => _user != null;
 
+  Future<bool> tryAutoLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('userId')) return false;
+
+    final userId = prefs.getInt('userId');
+    if (userId == null) return false;
+
+    final user = await DatabaseHelper.instance.readUser(userId);
+    if (user != null) {
+      _user = user;
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
+
   Future<bool> login(String email, String password) async {
     _setLoading(true);
     try {
       final user = await DatabaseHelper.instance.login(email, password);
       if (user != null) {
         _user = user;
+        final prefs = await SharedPreferences.getInstance();
+        if (user.id != null) {
+          await prefs.setInt('userId', user.id!);
+        }
         notifyListeners();
         return true;
       }
@@ -35,6 +56,12 @@ class AuthProvider with ChangeNotifier {
         avatarUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBzyfQVVKwbO5o7_ypesxxwfOs3hxhewjJCwsKs-ol3bE7AGm1igakeCBFScMbtTUFNesJc1RBsn8YcHjmvhk6l0kYgdZeO_8eUVszjsJQ9zBuGYiQBOkbRR7B_UiFYfv8wd88NnK6c8vTQdQoBkqYLJZdGIaFuy14Uo21uO-RtTj4ImbZPd6EG5gu6RKn5wyNqJ4aiaH91dsq8FHYszUQ80nONXgK4wZl_O8BtHHD_SglH7AF5Dz1yMUFDCT6IdA0QPesJpIY4tg', // Default avatar
       );
       _user = await DatabaseHelper.instance.createUser(newUser);
+
+      final prefs = await SharedPreferences.getInstance();
+      if (_user?.id != null) {
+        await prefs.setInt('userId', _user!.id!);
+      }
+
       notifyListeners();
       return true;
     } catch (e) {
@@ -56,8 +83,10 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  void logout() {
+  Future<void> logout() async {
     _user = null;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('userId');
     notifyListeners();
   }
 
