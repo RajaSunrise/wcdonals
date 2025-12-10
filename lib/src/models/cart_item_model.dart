@@ -18,8 +18,8 @@ class CartItem {
     if (size == 'Large') base += 5000;
     // Add logic for add-ons pricing if needed
     for (var addon in addOns) {
-        if (addon == 'Ekstra Keju') base += 3000;
-        // Pickle is free
+      if (addon == 'Ekstra Keju') base += 3000;
+      // Pickle is free
     }
     return base * quantity;
   }

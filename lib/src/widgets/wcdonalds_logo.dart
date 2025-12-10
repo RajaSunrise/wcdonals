@@ -9,7 +9,8 @@ class WcDonaldsLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // This is the SVG path from the HTML for the W logo
-    const String pathData = "M789.2 211.7C733.5 130.3 642.8 77.2 538.7 77.2c-104.2 0-194.8 53-250.6 134.5-55.8-81.4-146.4-134.5-250.6-134.5C33.3 77.2 0 168.3 0 279.3c0 98.6 68.6 182.7 161.4 207.9-50.6 102-79.9 217.4-79.9 339.9C81.5 929.1 161.9 1000 263 1000s181.5-70.9 181.5-172.9c0-122.5-29.3-237.9-79.9-339.9C456 461.9 524.6 377.9 524.6 279.3c0 1.4 0.1 2.8 0.1 4.2 11.2 165.2 143.6 295.8 308.8 295.8 6.2 0 12.3-0.2 18.4-0.5 40.2 115.3 150.3 199.3 272.1 199.3 90.9 0 169.2-51.5 204.6-125.7 3.5 0.5 7 0.8 10.6 0.8 52 0 94.2-42.2 94.2-94.2s-42.2-94.2-94.2-94.2c-29.3 0-55.4 13.4-72.6 34.3-43.3-25.9-80.5-62.8-106.9-106.9 20.8-17.2 34.3-43.3 34.3-72.6 0-52-42.2-94.2-94.2-94.2s-94.2 42.2-94.2 94.2c0 2.6 0.1 5.2 0.4 7.7-52.7-0.1-103.8-10.2-150.1-29.3 49.6-88.4 142.5-148.9 249-148.9 69.3 0 132.1 30.8 175.7 80.3 2.9-3.2 5.6-6.4 8.2-9.8z";
+    const String pathData =
+        "M789.2 211.7C733.5 130.3 642.8 77.2 538.7 77.2c-104.2 0-194.8 53-250.6 134.5-55.8-81.4-146.4-134.5-250.6-134.5C33.3 77.2 0 168.3 0 279.3c0 98.6 68.6 182.7 161.4 207.9-50.6 102-79.9 217.4-79.9 339.9C81.5 929.1 161.9 1000 263 1000s181.5-70.9 181.5-172.9c0-122.5-29.3-237.9-79.9-339.9C456 461.9 524.6 377.9 524.6 279.3c0 1.4 0.1 2.8 0.1 4.2 11.2 165.2 143.6 295.8 308.8 295.8 6.2 0 12.3-0.2 18.4-0.5 40.2 115.3 150.3 199.3 272.1 199.3 90.9 0 169.2-51.5 204.6-125.7 3.5 0.5 7 0.8 10.6 0.8 52 0 94.2-42.2 94.2-94.2s-42.2-94.2-94.2-94.2c-29.3 0-55.4 13.4-72.6 34.3-43.3-25.9-80.5-62.8-106.9-106.9 20.8-17.2 34.3-43.3 34.3-72.6 0-52-42.2-94.2-94.2-94.2s-94.2 42.2-94.2 94.2c0 2.6 0.1 5.2 0.4 7.7-52.7-0.1-103.8-10.2-150.1-29.3 49.6-88.4 142.5-148.9 249-148.9 69.3 0 132.1 30.8 175.7 80.3 2.9-3.2 5.6-6.4 8.2-9.8z";
 
     return SizedBox(
       width: size,
@@ -47,15 +48,19 @@ class _SvgPathPainter extends CustomPainter {
 
     // Left Arch
     path.moveTo(size.width * 0.1, size.height * 0.1);
-    path.quadraticBezierTo(size.width * 0.3, size.height * 0.8, size.width * 0.5, size.height * 0.3);
+    path.quadraticBezierTo(size.width * 0.3, size.height * 0.8,
+        size.width * 0.5, size.height * 0.3);
 
     // Right Arch
-    path.quadraticBezierTo(size.width * 0.7, size.height * 0.8, size.width * 0.9, size.height * 0.1);
+    path.quadraticBezierTo(size.width * 0.7, size.height * 0.8,
+        size.width * 0.9, size.height * 0.1);
 
     // Bottom Thickness
     path.lineTo(size.width * 0.8, size.height * 0.1);
-    path.quadraticBezierTo(size.width * 0.7, size.height * 0.6, size.width * 0.5, size.height * 0.2);
-    path.quadraticBezierTo(size.width * 0.3, size.height * 0.6, size.width * 0.2, size.height * 0.1);
+    path.quadraticBezierTo(size.width * 0.7, size.height * 0.6,
+        size.width * 0.5, size.height * 0.2);
+    path.quadraticBezierTo(size.width * 0.3, size.height * 0.6,
+        size.width * 0.2, size.height * 0.1);
     path.close();
 
     // Since the request was for "Like McDonalds but W", let's try to mimic the SVG path provided broadly

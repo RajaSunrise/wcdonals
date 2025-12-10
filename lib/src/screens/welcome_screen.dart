@@ -24,12 +24,11 @@ class WelcomeScreen extends StatelessWidget {
               ),
               child: const DecoratedBox(
                   decoration: BoxDecoration(
-                      color: Colors.transparent, // Placeholder for blur
-                  )
-              ),
+                color: Colors.transparent, // Placeholder for blur
+              )),
             ),
           ),
-           Positioned(
+          Positioned(
             bottom: -96,
             left: -96,
             child: Container(
@@ -65,7 +64,8 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const WcDonaldsLogo(color: AppTheme.accent, size: 60),
+                    child:
+                        const WcDonaldsLogo(color: AppTheme.accent, size: 60),
                   ),
                   const SizedBox(height: 32),
                   // Headline
@@ -73,9 +73,9 @@ class WelcomeScreen extends StatelessWidget {
                     'Selamat Datang di WcDonald',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
                   ),
                   const SizedBox(height: 12),
                   // Subtitle
@@ -83,15 +83,18 @@ class WelcomeScreen extends StatelessWidget {
                     'Pesan favoritmu, lebih cepat dan mudah.',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
-                    ),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.8),
+                        ),
                   ),
                   const Spacer(),
                   // Buttons
                   CustomButton(
                     text: 'Mulai Sekarang',
                     onPressed: () {
-                        Navigator.pushNamed(context, '/auth');
+                      Navigator.pushNamed(context, '/auth');
                     },
                   ),
                   const SizedBox(height: 12),
@@ -99,7 +102,7 @@ class WelcomeScreen extends StatelessWidget {
                     text: 'Masuk',
                     isPrimary: false,
                     onPressed: () {
-                         Navigator.pushNamed(context, '/auth');
+                      Navigator.pushNamed(context, '/auth');
                     },
                   ),
                   const SizedBox(height: 24),

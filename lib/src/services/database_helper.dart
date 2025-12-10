@@ -53,7 +53,15 @@ CREATE TABLE users (
     final db = await instance.database;
     final maps = await db.query(
       'users',
-      columns: ['id', 'email', 'password', 'name', 'phone', 'address', 'avatar_url'],
+      columns: [
+        'id',
+        'email',
+        'password',
+        'name',
+        'phone',
+        'address',
+        'avatar_url'
+      ],
       where: 'id = ?',
       whereArgs: [id],
     );

@@ -25,31 +25,31 @@ class _AuthScreenState extends State<AuthScreen> {
     final name = _nameController.text;
 
     if (email.isEmpty || password.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Mohon isi semua field')),
-        );
-        return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Mohon isi semua field')),
+      );
+      return;
     }
 
     bool success;
     if (_isLogin) {
       success = await auth.login(email, password);
     } else {
-        if (name.isEmpty) {
-             ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Nama tidak boleh kosong')),
-            );
-            return;
-        }
+      if (name.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Nama tidak boleh kosong')),
+        );
+        return;
+      }
       success = await auth.register(name, email, password);
     }
 
     if (success && mounted) {
       Navigator.pushReplacementNamed(context, '/home');
     } else if (mounted) {
-       ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(_isLogin ? 'Login Gagal' : 'Registrasi Gagal')),
-        );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(_isLogin ? 'Login Gagal' : 'Registrasi Gagal')),
+      );
     }
   }
 
@@ -101,7 +101,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         onTap: () => setState(() => _isLogin = true),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: _isLogin ? Theme.of(context).primaryColor : Colors.transparent,
+                            color: _isLogin
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
                             borderRadius: BorderRadius.circular(9999),
                             boxShadow: _isLogin
                                 ? [
@@ -128,7 +130,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         onTap: () => setState(() => _isLogin = false),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: !_isLogin ? Theme.of(context).primaryColor : Colors.transparent,
+                            color: !_isLogin
+                                ? Theme.of(context).primaryColor
+                                : Colors.transparent,
                             borderRadius: BorderRadius.circular(9999),
                             boxShadow: !_isLogin
                                 ? [
@@ -157,10 +161,10 @@ class _AuthScreenState extends State<AuthScreen> {
 
               // Fields
               if (!_isLogin) ...[
-                 CustomTextField(
-                    label: 'Nama Lengkap',
-                    placeholder: 'Masukkan nama Anda',
-                    controller: _nameController,
+                CustomTextField(
+                  label: 'Nama Lengkap',
+                  placeholder: 'Masukkan nama Anda',
+                  controller: _nameController,
                 ),
                 const SizedBox(height: 16),
               ],
@@ -186,26 +190,23 @@ class _AuthScreenState extends State<AuthScreen> {
                     child: TextButton(
                         onPressed: () {},
                         child: Text(
-                            'Lupa Password?',
-                            style: TextStyle(color: Theme.of(context).primaryColor),
-                        )
-                    )
-                ),
+                          'Lupa Password?',
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ))),
               ] else ...[
-                   const SizedBox(height: 24),
+                const SizedBox(height: 24),
               ],
 
               const SizedBox(height: 12),
-              Consumer<AuthProvider>(
-                  builder: (context, auth, _) {
-                      return auth.isLoading
-                        ? const Center(child: CircularProgressIndicator())
-                        : CustomButton(
-                            text: _isLogin ? 'Login' : 'Daftar',
-                            onPressed: _submit,
-                          );
-                  }
-              ),
+              Consumer<AuthProvider>(builder: (context, auth, _) {
+                return auth.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : CustomButton(
+                        text: _isLogin ? 'Login' : 'Daftar',
+                        onPressed: _submit,
+                      );
+              }),
 
               const SizedBox(height: 32),
               // Divider
@@ -214,7 +215,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   Expanded(child: Divider(color: Colors.grey.shade300)),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text('Atau masuk dengan', style: TextStyle(color: Colors.grey.shade500)),
+                    child: Text('Atau masuk dengan',
+                        style: TextStyle(color: Colors.grey.shade500)),
                   ),
                   Expanded(child: Divider(color: Colors.grey.shade300)),
                 ],
@@ -224,9 +226,11 @@ class _AuthScreenState extends State<AuthScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   _SocialButton(icon: Icons.g_mobiledata, color: Colors.red), // Placeholder for Google
-                   const SizedBox(width: 16),
-                   _SocialButton(icon: Icons.facebook, color: Colors.blue),
+                  _SocialButton(
+                      icon: Icons.g_mobiledata,
+                      color: Colors.red), // Placeholder for Google
+                  const SizedBox(width: 16),
+                  _SocialButton(icon: Icons.facebook, color: Colors.blue),
                 ],
               )
             ],
@@ -238,20 +242,20 @@ class _AuthScreenState extends State<AuthScreen> {
 }
 
 class _SocialButton extends StatelessWidget {
-    final IconData icon;
-    final Color color;
-    const _SocialButton({required this.icon, required this.color});
+  final IconData icon;
+  final Color color;
+  const _SocialButton({required this.icon, required this.color});
 
-    @override
-    Widget build(BuildContext context) {
-        return Container(
-            width: 56,
-            height: 56,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade300),
-                shape: BoxShape.circle,
-            ),
-            child: Icon(icon, color: color, size: 32),
-        );
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade300),
+        shape: BoxShape.circle,
+      ),
+      child: Icon(icon, color: color, size: 32),
+    );
+  }
 }

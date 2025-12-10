@@ -38,12 +38,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       size: _selectedSize,
       addOns: _selectedAddOns,
     );
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text('${widget.product.name} ditambahkan ke keranjang'),
-            duration: const Duration(seconds: 1),
-        )
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('${widget.product.name} ditambahkan ke keranjang'),
+      duration: const Duration(seconds: 1),
+    ));
     Navigator.pop(context);
   }
 
@@ -75,16 +73,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
                 actions: [
-                    Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: IconButton(
-                                icon: const Icon(Icons.share, color: Colors.black),
-                                onPressed: () {},
-                            )
-                        ),
-                    )
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                          icon: const Icon(Icons.share, color: Colors.black),
+                          onPressed: () {},
+                        )),
+                  )
                 ],
               ),
               SliverToBoxAdapter(
@@ -95,7 +92,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     children: [
                       Text(
                         widget.product.name,
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
                       ),
@@ -118,7 +118,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       const SizedBox(height: 24),
                       Text(
                         'Ukuran',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 12),
                       Row(
@@ -135,7 +138,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       const SizedBox(height: 24),
                       Text(
                         'Tambahan',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 12),
                       _buildAddOnOption('Ekstra Keju', 3000),
@@ -156,7 +162,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.95),
+                color:
+                    Theme.of(context).scaffoldBackgroundColor.withOpacity(0.95),
                 border: Border(top: BorderSide(color: Colors.grey.shade200)),
               ),
               child: Row(
@@ -177,10 +184,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                         Text(
                           '$_quantity',
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         IconButton(
-                          icon: Icon(Icons.add, color: Theme.of(context).primaryColor),
+                          icon: Icon(Icons.add,
+                              color: Theme.of(context).primaryColor),
                           onPressed: () {
                             setState(() => _quantity++);
                           },
@@ -191,15 +200,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: SizedBox(
-                        height: 56,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).primaryColor,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                            ),
-                            onPressed: _addToCart,
-                            child: const Text('Tambah ke Keranjang', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                      height: 56,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
                         ),
+                        onPressed: _addToCart,
+                        child: const Text('Tambah ke Keranjang',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16)),
+                      ),
                     ),
                   )
                 ],
@@ -218,9 +232,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : Colors.transparent,
+          color: isSelected
+              ? Theme.of(context).primaryColor.withOpacity(0.1)
+              : Colors.transparent,
           border: Border.all(
-            color: isSelected ? Theme.of(context).primaryColor : Colors.grey.shade300,
+            color: isSelected
+                ? Theme.of(context).primaryColor
+                : Colors.grey.shade300,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(30),
@@ -229,7 +247,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           child: Text(
             extraPrice > 0 ? '$size (+Rp $extraPrice)' : size,
             style: TextStyle(
-              color: isSelected ? Theme.of(context).primaryColor : Colors.grey.shade600,
+              color: isSelected
+                  ? Theme.of(context).primaryColor
+                  : Colors.grey.shade600,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -256,7 +276,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Text(
                 price > 0 ? '+Rp $price' : 'Gratis',
                 style: TextStyle(
-                  color: price > 0 ? Theme.of(context).primaryColor : Colors.grey,
+                  color:
+                      price > 0 ? Theme.of(context).primaryColor : Colors.grey,
                   fontSize: 12,
                 ),
               ),

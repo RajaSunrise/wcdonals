@@ -21,8 +21,10 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bgColor = backgroundColor ?? (isPrimary ? theme.colorScheme.primary : Colors.transparent);
-    final txtColor = textColor ?? (isPrimary ? Colors.white : theme.colorScheme.onBackground);
+    final bgColor = backgroundColor ??
+        (isPrimary ? theme.colorScheme.primary : Colors.transparent);
+    final txtColor = textColor ??
+        (isPrimary ? Colors.white : theme.colorScheme.onBackground);
 
     return SizedBox(
       width: isFullWidth ? double.infinity : null,
@@ -33,7 +35,9 @@ class CustomButton extends StatelessWidget {
           backgroundColor: bgColor,
           foregroundColor: txtColor,
           elevation: isPrimary ? 2 : 0,
-          shadowColor: isPrimary ? theme.colorScheme.primary.withOpacity(0.3) : Colors.transparent,
+          shadowColor: isPrimary
+              ? theme.colorScheme.primary.withOpacity(0.3)
+              : Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9999), // rounded-full
           ),

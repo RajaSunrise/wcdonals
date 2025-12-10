@@ -53,7 +53,8 @@ class AuthProvider with ChangeNotifier {
         name: name,
         email: email,
         password: password,
-        avatarUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBzyfQVVKwbO5o7_ypesxxwfOs3hxhewjJCwsKs-ol3bE7AGm1igakeCBFScMbtTUFNesJc1RBsn8YcHjmvhk6l0kYgdZeO_8eUVszjsJQ9zBuGYiQBOkbRR7B_UiFYfv8wd88NnK6c8vTQdQoBkqYLJZdGIaFuy14Uo21uO-RtTj4ImbZPd6EG5gu6RKn5wyNqJ4aiaH91dsq8FHYszUQ80nONXgK4wZl_O8BtHHD_SglH7AF5Dz1yMUFDCT6IdA0QPesJpIY4tg', // Default avatar
+        avatarUrl:
+            'https://lh3.googleusercontent.com/aida-public/AB6AXuBzyfQVVKwbO5o7_ypesxxwfOs3hxhewjJCwsKs-ol3bE7AGm1igakeCBFScMbtTUFNesJc1RBsn8YcHjmvhk6l0kYgdZeO_8eUVszjsJQ9zBuGYiQBOkbRR7B_UiFYfv8wd88NnK6c8vTQdQoBkqYLJZdGIaFuy14Uo21uO-RtTj4ImbZPd6EG5gu6RKn5wyNqJ4aiaH91dsq8FHYszUQ80nONXgK4wZl_O8BtHHD_SglH7AF5Dz1yMUFDCT6IdA0QPesJpIY4tg', // Default avatar
       );
       _user = await DatabaseHelper.instance.createUser(newUser);
 

@@ -5,7 +5,7 @@ import 'dart:io';
 
 void initializeDatabaseFactory() {
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-     sqfliteFfiInit();
-     databaseFactory = databaseFactoryFfi;
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
   }
 }

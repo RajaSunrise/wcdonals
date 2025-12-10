@@ -43,7 +43,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           keyboardType: widget.keyboardType,
           decoration: InputDecoration(
             hintText: widget.placeholder,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(
