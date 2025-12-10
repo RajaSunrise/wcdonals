@@ -35,10 +35,10 @@
 <body>
   <script>
     // Increase the timeout for RequireJS to prevent load failures in debug mode
-    var require = {
+    window.require = {
       waitSeconds: 0
     };
   </script>
-  <script src="flutter_bootstrap.js" async></script>
+  <script src="flutter_bootstrap.js"></script>
 </body>
 </html>
